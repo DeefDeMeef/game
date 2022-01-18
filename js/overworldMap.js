@@ -1,6 +1,7 @@
 class OverworldMap {
   constructor(config) {
     this.gameObjects = config.gameObjects;
+    const walls = config.walls || {};
 
     this.lowerImage = new Image();
     this.lowerImage.src = config.lowerSrc;
@@ -9,12 +10,12 @@ class OverworldMap {
     this.upperImage.src = config.upperSrc;
   }
 
-  drawLowerImage(ctx) {
-    ctx.drawImage(this.lowerImage, 0, 0);
+  drawLowerImage(ctx, cameraPerson) {
+    ctx.drawImage(this.lowerImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
   }
 
-  drawUpperImage(ctx) {
-    ctx.drawImage(this.upperImage, 0, 0);
+  drawUpperImage(ctx, cameraPerson) {
+    ctx.drawImage(this.upperImage, utils.withGrid(10.5) - cameraPerson.x, utils.withGrid(6) - cameraPerson.y);
   }
 }
 
@@ -25,33 +26,30 @@ window.OverworldMaps = {
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(6),
+        x: utils.withGrid(10),
+        y: utils.withGrid(16),
       }),
       npc1: new Person({
         x: utils.withGrid(7),
         y: utils.withGrid(9),
-        src: "img/characters/people/mark.png",
+        src: "img/characters/people/discover.png",
       }),
     },
+    // configure walls if needed
   },
   Kitchen: {
     lowerSrc: "img/maps/KitchenLower.png",
     upperSrc: "img/maps/KitchenUpper.png",
     gameObjects: {
       hero: new Person({
-        x: 3,
-        y: 5,
+        isPlayerControlled: true,
+        x: utils.withGrid(5),
+        y: utils.withGrid(6),
       }),
-      npcA: new GameObject({
-        x: 9,
-        y: 6,
-        src: "img/characters/people/npc2.png",
-      }),
-      npcB: new GameObject({
-        x: 10,
-        y: 8,
-        src: "img/characters/people/npc3.png",
+      npcA: new Person({
+        x: utils.withGrid(7),
+        y: utils.withGrid(9),
+        src: "img/characters/people/discover.png",
       }),
     },
   },
