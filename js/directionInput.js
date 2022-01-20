@@ -20,18 +20,18 @@ class DirectionInput {
 
   init() {
     document.addEventListener("keydown", (e) => {
+      // which key is being pressed down?
       const dir = this.map[e.code];
       if (dir && this.heldDirections.indexOf(dir) === -1) {
         this.heldDirections.unshift(dir);
-        console.log(this.heldDirections);
       }
     });
     document.addEventListener("keyup", (e) => {
+      // clear direction input (key)
       const dir = this.map[e.code];
       const index = this.heldDirections.indexOf(dir);
       if (index > -1) {
         this.heldDirections.splice(index, 1);
-        console.log(this.heldDirections);
       }
     });
   }
