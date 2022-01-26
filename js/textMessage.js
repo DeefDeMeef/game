@@ -13,6 +13,7 @@ class TextMessage {
 
     this.element.innerHTML = `
       <p class="TextMessage_p">${this.text[0].name}</p>
+      <p class="TextMessage_p">${this.text[0].description}</p>
       <img class="image_animal" src=${this.text[0].image} />
       <button class="TextMessage_button">Close</button>
     `;
