@@ -7,14 +7,13 @@ class TextMessage {
   }
 
   createElement() {
-    console.log("this is data: ", data);
     // populate with content
     this.element = document.createElement("div");
     this.element.classList.add("TextMessage");
 
     this.element.innerHTML = `
-      <p class="TextMessage_p">${this.text}</p>
-      <p class="TextMessage_p">This is data: ${this.data}</p>
+      <p class="TextMessage_p">${this.text[0].name}</p>
+      <img class="image_animal" src=${this.text[0].image} />
       <button class="TextMessage_button">Close</button>
     `;
 

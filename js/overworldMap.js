@@ -79,36 +79,60 @@ class OverworldMap {
   }
 }
 
-const data = {
-  img: "img.png",
-  name: "Vogel",
-  desc: "Ik ben een vogel",
+let animal = [];
+
+const getData = async () => {
+  try {
+    await gbifProvider
+      .getSpecies("AFRICA")
+      .then((data) => {
+        console.log("This is res from api: ", data);
+        let animals;
+        //   SAVE ALL THE ANIMAL NAMES
+        animals = data.results.map((item) => {
+          return {
+            name: item.species,
+          };
+        });
+        return animals;
+      })
+      .then((animals) => {
+        const getAnimal = gbifProvider.getAnimal(animals).then((data) => {
+          console.log(data);
+          let object = data.query.pages;
+          let newData = {
+            description: object[Object.keys(object)[0]].extract,
+            title: object[Object.keys(object)[0]].title,
+          };
+          console.log(newData);
+          return newData;
+        });
+        return getAnimal;
+      })
+      .then((res) => {
+        console.log("echt?", res);
+        const getAnimalImage = gbifProvider.getAnimalImage(res.title).then((data) => {
+          console.log("wat is dit?", data);
+          let object = data.query.pages;
+          let allData = {
+            name: res.title,
+            description: res.description,
+            image: object[Object.keys(object)[0]].original.source,
+          };
+          console.log(allData.name);
+          animal.push(allData);
+          console.log("animal title: ", animal);
+
+          return allData;
+        });
+      });
+  } catch {
+    throw new Error("je doet het verkeerd kut");
+  }
+  // return res;
 };
 
-const objects = {
-  npc1: new Person({
-    x: utils.randomGrid(26),
-    y: utils.randomGrid(26),
-    src: "img/characters/people/discover.png",
-    behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-    talking: [
-      {
-        events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      },
-    ],
-  }),
-  npc2: new Person({
-    x: utils.randomGrid(26),
-    y: utils.randomGrid(26),
-    src: "img/characters/people/discover.png",
-    behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-    talking: [
-      {
-        events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      },
-    ],
-  }),
-};
+getData();
 
 window.OverworldMaps = {
   lobby: {
@@ -149,27 +173,14 @@ window.OverworldMaps = {
     },
   },
   grassLands: {
-    lowerSrc: "img/maps/snow.png",
-    upperSrc: "img/maps/snowUpper.png",
+    lowerSrc: "img/maps/grass.png",
+    upperSrc: "img/maps/grassUpper.png",
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
         x: utils.withGrid(28),
         y: utils.withGrid(28),
       }),
-      // objects[npc1],
-      // TO DO: loop over data entries
-      // npc1: new Person({
-      //   x: utils.withGrid(26),
-      //   y: utils.withGrid(26),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
       npc2: new Person({
         x: utils.withGrid(28),
         y: utils.withGrid(24),
@@ -193,26 +204,230 @@ window.OverworldMaps = {
           },
         ],
       }),
+      discover1: new Person({
+        x: utils.withGrid(27),
+        y: utils.withGrid(27),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: animal }],
+          },
+        ],
+      }),
+      // discover2: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden 222!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover3: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover4: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover5: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover6: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover7: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover8: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover9: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover10: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover11: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover12: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover13: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover14: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover15: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover16: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover17: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover18: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover19: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
+      // discover20: new Person({
+      //   x: utils.randomGrid(50),
+      //   y: utils.randomGrid(50),
+      //   src: "img/characters/people/discover.png",
+      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+      //   talking: [
+      //     {
+      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
+      //     },
+      //   ],
+      // }),
     },
     walls: {
       [utils.asGridCoords(0, 0)]: true,
     },
     cutSceneSpaces: {},
-  },
-  dessert: {
-    lowerSrc: "img/maps/KitchenLower.png",
-    upperSrc: "img/maps/KitchenUpper.png",
-    gameObjects: {
-      hero: new Person({
-        isPlayerControlled: true,
-        x: utils.withGrid(10),
-        y: utils.withGrid(10),
-      }),
-      npcA: new Person({
-        x: utils.withGrid(7),
-        y: utils.withGrid(9),
-        src: "img/characters/people/discover.png",
-      }),
-    },
   },
 };
