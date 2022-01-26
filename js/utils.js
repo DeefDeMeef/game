@@ -3,6 +3,10 @@ const utils = {
     return n * 16;
   },
 
+  randomGrid(n) {
+    return Math.floor(Math.random() * n) * 16;
+  },
+
   asGridCoords(x, y) {
     return `${x * 16},${y * 16}`;
   },
@@ -22,5 +26,12 @@ const utils = {
     }
 
     return { x, y };
+  },
+
+  emitEvent(name, detail) {
+    const event = new CustomEvent(name, {
+      detail,
+    });
+    document.dispatchEvent(event);
   },
 };
