@@ -11,12 +11,19 @@ class TextMessage {
     this.element = document.createElement("div");
     this.element.classList.add("TextMessage");
 
-    this.element.innerHTML = `
+    if (this.text[0].name) {
+      this.element.innerHTML = `
       <p class="TextMessage_p">${this.text[0].name}</p>
       <p class="TextMessage_p">${this.text[0].description}</p>
       <img class="image_animal" src=${this.text[0].image} />
       <button class="TextMessage_button">Close</button>
     `;
+    } else {
+      this.element.innerHTML = `
+      <p class="TextMessage_p2">${this.text}</p>
+      <button class="TextMessage_button">Close</button>
+    `;
+    }
 
     this.element.querySelector("button").addEventListener("click", () => {
       this.done();

@@ -173,8 +173,8 @@ window.OverworldMaps = {
     },
   },
   grassLands: {
-    lowerSrc: "img/maps/grass.png",
-    upperSrc: "img/maps/grassUpper.png",
+    lowerSrc: "img/maps/snow.png",
+    upperSrc: "img/maps/snowUpper.png",
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
@@ -204,6 +204,31 @@ window.OverworldMaps = {
           },
         ],
       }),
+      npc3: new Person({
+        x: utils.withGrid(33),
+        y: utils.withGrid(28),
+        src: "img/characters/people/npc2.png",
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Welkom in de Grass Lands biome" },
+              {
+                type: "textMessage",
+                text: "Hier kan je geweldige dieren vinden die van planten houden, ze zijn vermomd als een vraagteken. Succes met zoeken!",
+              },
+            ],
+          },
+        ],
+        behaviorLoop: [
+          { type: "walk", direction: "down" },
+          { type: "walk", direction: "down" },
+          { type: "stand", direction: "down", time: 800 },
+          { type: "walk", direction: "up" },
+          { type: "walk", direction: "up" },
+          { type: "walk", direction: "up" },
+          { type: "stand", direction: "up", time: 800 },
+        ],
+      }),
       discover1: new Person({
         x: utils.withGrid(27),
         y: utils.withGrid(27),
@@ -215,215 +240,215 @@ window.OverworldMaps = {
           },
         ],
       }),
-      // discover2: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden 222!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover3: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover4: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover5: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover6: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover7: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover8: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover9: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover10: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover11: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover12: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover13: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover14: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover15: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover16: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover17: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover18: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover19: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
-      // discover20: new Person({
-      //   x: utils.randomGrid(50),
-      //   y: utils.randomGrid(50),
-      //   src: "img/characters/people/discover.png",
-      //   behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
-      //   talking: [
-      //     {
-      //       events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!", data: { data } }],
-      //     },
-      //   ],
-      // }),
+      discover2: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden 222!" }],
+          },
+        ],
+      }),
+      discover3: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover4: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover5: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover6: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover7: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover8: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover9: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover10: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover11: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover12: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover13: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover14: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover15: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover16: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover17: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover18: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover19: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
+      discover20: new Person({
+        x: utils.randomGrid(50),
+        y: utils.randomGrid(50),
+        src: "img/characters/people/discover.png",
+        behaviorLoop: [{ type: "stand", direction: "down", time: 1000 }],
+        talking: [
+          {
+            events: [{ type: "textMessage", text: "Wow, je hebt me gevonden!" }],
+          },
+        ],
+      }),
     },
     walls: {
       [utils.asGridCoords(0, 0)]: true,

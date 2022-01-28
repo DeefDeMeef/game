@@ -62,20 +62,20 @@ class Overworld {
     this.startGameLoop();
 
     this.map.startCutscene([
-      { who: "npc2", type: "stand", direction: "left" },
+      { who: "npc3", type: "stand", direction: "left" },
       { who: "hero", type: "walk", direction: "right" },
       { who: "hero", type: "walk", direction: "right" },
       { who: "hero", type: "walk", direction: "right" },
       { who: "hero", type: "walk", direction: "right" },
-      // { type: "textMessage", text: "Welkom bij de Naturalis game!" },
-      // {
-      //   type: "textMessage",
-      //   text: "Bij deze online expedite kan je in verschillende werelden op zoek gaan naar dieren en deze terug brengen naar het lab voor onderzoek!",
-      // },
-      // {
-      //   type: "textMessage",
-      //   text: "Ga op een portaal hieronder staan om naar een wereld te teleporteren, veel plezier.",
-      // },
+      { type: "textMessage", text: "Welkom bij de Naturalis game!" },
+      {
+        type: "textMessage",
+        text: "Bij deze online expedite kan je in verschillende werelden op zoek gaan naar dieren en deze terug brengen naar het lab voor onderzoek!",
+      },
+      { who: "npc3", type: "walk", direction: "right" },
+      { who: "npc3", type: "walk", direction: "right" },
+      { who: "npc3", type: "walk", direction: "down" },
+      { who: "npc3", type: "walk", direction: "down" },
     ]);
   }
 }
